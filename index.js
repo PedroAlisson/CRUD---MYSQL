@@ -4,6 +4,11 @@ const path = require('path')
 const port = process.env.PORT || 3000
 const mysql = require('mysql')
 
+app.use(express.static('public'))
+
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+
 const connection = mysql.createConnection({
     host: '127.0.0.1',
     user:'root',
@@ -11,15 +16,14 @@ const connection = mysql.createConnection({
     database: 'cadastro'
 })
 
-
-app.use(express.static('public'))
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-
+const dependecies = {
+    connection
+}
+const routes = require('./routes/routes')
 app.get('/', (req,res) => res.render('home'))
+app.use('/pessoas', routes(dependecies))
 
-
-connection.connect((err) =>{
+connection.connect(() =>{
     app.listen(port, () => console.log('Starting na porta', + port) )
 })
 
