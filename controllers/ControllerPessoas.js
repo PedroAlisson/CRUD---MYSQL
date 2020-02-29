@@ -10,4 +10,15 @@ const deleteOne = async(connection, req, res) =>{
     await pessoas.deleteOne(connection, req.params.id)
     res.redirect('/pessoas')
 }
-    module.exports = {index,deleteOne }
+
+const createForm = (req,res) =>{
+    res.render('pessoas/new')
+}
+
+const create = async(connection, req,res) =>{
+   await pessoas.create(connection, req.body)
+   res.redirect('/pessoas')
+
+}
+
+    module.exports = {index,deleteOne,createForm,create}
