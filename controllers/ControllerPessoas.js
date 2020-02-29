@@ -21,4 +21,17 @@ const create = async(connection, req,res) =>{
 
 }
 
-    module.exports = {index,deleteOne,createForm,create}
+const updateForm = async(connection,req,res) =>{
+    const pessoa = await pessoas.findById(connection, req.params.id)   
+    res.render('pessoas/update',{
+        pessoa
+    })
+}
+
+const update = async(connection,req,res) =>{
+   await pessoas.update(connection,req.params.id, req.body)
+   res.redirect('/pessoas')
+
+}
+
+    module.exports = {index,deleteOne,createForm,create,updateForm,update}

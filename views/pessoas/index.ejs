@@ -1,8 +1,8 @@
 <%- include('../partials/header') %>
 
 <div class="container">
-    <h1 style="text-align: center;margin-top: 50px; margin-bottom: 50px;">Listagem de Pessoas</h1>
-    <p><a href="/pessoas/create">Cadastrar Nova Pessoa</a></p>
+    <h1 >Listagem de Pessoas</h1>
+    <p><a href="/pessoas/create" class="btn btn-primary">Cadastrar Nova Pessoa</a></p>
     <table class="table table striped table-hover table-bordered">
         <tr>
             <th>Nome</th>
@@ -17,7 +17,7 @@
             <td><%= pessoa.cargo%></td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                <a type="button" class="btn btn-secondary">Editar</a>
+                <a type="button" class="btn btn-secondary" href="/pessoas/update/<%= pessoa.id%>">Editar</a>
                 <a type="button" class="btn btn-danger" href="/pessoas/delete/<%= pessoa.id%>" onclick="return confirm('Deseja realmente excluir?')">Excluir</a>
               </div>
             </td>
